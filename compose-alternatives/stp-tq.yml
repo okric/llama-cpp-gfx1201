@@ -1,7 +1,7 @@
 # docker-compose.yml
 services:
     llama-cpp:
-        image: ghcr.io/ggml-org/llama.cpp:server-rocm
+        image: llama-cpp-turboquant
         container_name: llama-cpp
         restart: unless-stopped
         privileged: true
@@ -21,19 +21,22 @@ services:
         volumes:
             - ./models:/models:rw
         command: >
-            --models-dir /models
+            --model /models/Qwen3.6-27B-UD-Q5_K_XL-STP.gguf
+            --ctx-size 262144
+            -ctk turbo3
+            -ctv turbo3
             --reasoning auto
-            --reasoning-format deepseek
+            --temperature 0.6
+            --presence-penalty 0.0
+            --top-p 0.95
+            --top-k 20
+            --min-p 0.00
             --jinja
             -ngl 999
-            -c 92160
-            -np 2
-            -b 4096
-            -ub 1024
+            -np 1
+            -b 2048
+            -ub 512
             --mlock
             -fa on
-            -ctk q8_0
-            -ctv q8_0
-            --cache-ram 4096
             --host 0.0.0.0
             --port 11433

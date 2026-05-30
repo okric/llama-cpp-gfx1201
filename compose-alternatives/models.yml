@@ -21,22 +21,8 @@ services:
         volumes:
             - ./models:/models:rw
         command: >
-            --model /models/Qwen3.6-27B-UD-Q5_K_XL-STP.gguf
-            --ctx-size 262144
-            -ctk turbo3
-            -ctv turbo3
-            --reasoning auto
-            --temperature 0.6
-            --presence-penalty 0.0
-            --top-p 0.95
-            --top-k 20
-            --min-p 0.00
-            --jinja
-            -ngl 999
-            -np 1
-            -b 4096
-            -ub 1024
-            --mlock
-            -fa on
+            --models-dir /models
+            --models-autoload
+            --models-max 1
             --host 0.0.0.0
             --port 11433
