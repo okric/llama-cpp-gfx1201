@@ -1,0 +1,42 @@
+# docker-compose.yml
+services:
+    llama-cpp:
+        image: ghcr.io/ggml-org/llama.cpp:server-rocm
+        container_name: llama-cpp
+        restart: unless-stopped
+        privileged: true
+        security_opt:
+            - seccomp=unconfined
+        devices:
+            - /dev/kfd
+            - /dev/dri
+        ports:
+            - "11433:11433"
+        healthcheck:
+            test: curl -sf http://localhost:11433/v1/models
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 60s
+        volumes:
+            - ./models:/models:rw
+        command: >
+            --model /models/Qwen3.6-27B-UD-Q5_K_XL-STP.gguf
+            --ctx-size 155000
+            -np 1
+            --reasoning auto
+            --temperature 0.6
+            --presence-penalty 0.0
+            --top-p 0.95
+            --top-k 20
+            --min-p 0.00
+            --jinja
+            -ngl 999
+            -b 4096
+            -ub 1024
+            --mlock
+            -fa on
+            -ctk q8_0
+            -ctv q8_0
+            --host 0.0.0.0
+            --port 11433
