@@ -15,4 +15,3 @@ done
 git add *.bench.md
 git commit -m "bench: add context scaling results for all models"
 git push origin main
-sudo poweroff

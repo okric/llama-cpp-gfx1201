@@ -16,7 +16,7 @@ wget -c https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/resolve/main/mmproj-
 echo "Downloading 27B MTP model..."
 wget -c https://huggingface.co/unsloth/Qwen3.6-27B-MTP-GGUF/resolve/main/Qwen3.6-27B-UD-Q5_K_XL.gguf
 
-docker build -t llama-cpp-turboquant .
+docker build -f configs/Dockerfile-rocm72-vulkan -t llama-rocm72-vulkan .
 
 docker-compose up -d
 

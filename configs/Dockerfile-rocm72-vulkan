@@ -1,5 +1,5 @@
 # ── Stage 1: build ────────────────────────────────────────────────
-FROM rocm/dev-ubuntu-24.04:7.1 AS builder
+FROM rocm/dev-ubuntu-24.04:7.2.4 AS builder
 
 ENV AMDGPU_TARGETS="gfx1201"
 
@@ -23,7 +23,7 @@ RUN cd llama-cpp \
     && cmake --build build -j$(nproc)
 
 # ── Stage 2: runtime ──────────────────────────────────────────────
-FROM rocm/dev-ubuntu-24.04:7.1
+FROM rocm/dev-ubuntu-24.04:7.2.4
 
 RUN apt-get update && apt-get install -y \
     curl \

@@ -12,7 +12,7 @@ docker exec llama-cpp llama-bench \
     -b 2048 \
     -ub 2048 \
     --progress \
-    -ctk turbo4 -ctv turbo4 \
+    -ctk q8_0 -ctv q8_0 \
     -d 8000,32000,64000
 
 # TODO: test quantization, but need to baseline quality

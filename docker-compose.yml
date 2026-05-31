@@ -1,7 +1,7 @@
 # docker-compose.yml
 services:
     llama-cpp:
-        image: llama-cpp-turboquant
+        image: llama-rocm72-vulkan
         container_name: llama-cpp
         restart: unless-stopped
         privileged: true
