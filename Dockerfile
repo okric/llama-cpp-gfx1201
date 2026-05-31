@@ -35,11 +35,10 @@ RUN apt-get update && apt-get install -y \
     rocblas \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /llama-cpp-turboquant/build/bin/llama-server /usr/local/bin/llama-server
-COPY --from=builder /llama-cpp-turboquant/build/bin/llama-bench /usr/local/bin/llama-bench
+COPY --from=builder /llama-cpp-turboquant/build/bin/llama-* /usr/local/bin/
 COPY --from=builder /llama-cpp-turboquant/build/bin/*.so* /usr/local/lib/
 
-RUN ldconfig && chmod +x /usr/local/bin/llama-server
+RUN ldconfig && chmod +x /usr/local/bin/llama-*
 
 VOLUME ["/models"]
 EXPOSE 11433
