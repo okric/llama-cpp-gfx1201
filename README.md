@@ -1,34 +1,77 @@
 # Llama.cpp MTP+TQ on gfx1201
 
-This project allows for a quick start with Llama.cpp using Docker.  
-It already implements MTP and Turboquant, allowing Qwen 3.6 to run on gfx1201.
+Quick-start Docker setup for Llama.cpp with MTP and Turboquant support, tuned for Qwen 3.6 on gfx1201.
 
-Got your hands on an AMD AI PRO R9700 with some sweet 32GB VRAM? Struggling to get past 20 tokens per second on large models? This project is for you.
+Targeted at AMD AI PRO R9700 owners with 32GB VRAM who struggle to get past 20 tokens per second on Qwen 3.6 models.
 
-### What it uses
+## Stack
+
+- Qwen 3.6 models: 27B and 35B-A3B with Q4/Q5 quantization
 - TheTom's Turboquant fork of llama.cpp
-- Ubuntu 24.04 + ROCm 6.4.0 as a base
+- Ubuntu 24.04 + ROCm 6.4.0
 
-### Results
-Using the 27B MTP model with Turboquant:
-- 30+ tps on empty context, 20 tps around 75k tokens in context
+## Features
 
-Using the 35B MTP model with Turboquant:
-- 50+ tps on empty context, 43 tps around 200k tokens in context
+- MTP (multi-token prediction) - faster token generation
+- Turboquant - save VRAM and improve inference speed
+- Vision support for the 35B-A3B model
 
-## Models
+### Performance Results
 
-https://huggingface.co/collections/unsloth/unsloth-dynamic-20-quants
+Using the 35B-A3B Q4 or Q5 model:
 
-## FAQ
+| Context size | Generation | Prefill |
+|--------------|------------|---------|
+| empty        |    80      |  1000   |
+| 25k tokens   |    70      |   640   |
+| 50k tokens   |    60      |   380   |
+| 100k tokens  |    30      |   200   |
 
-- Why not build from within the docker-compose?
-Personal choice, to separate the experimentation with the image, from experimentation with the models.
 
-- Why did you set context size to 131072 and not the maximum of 262144?
-The models degrade in quality and speed as the context grows, I found it more practical to reduce and indicate to the agents that it's "time to compact" the context.  
-Also, it allows more room for parallelism.  
-I'm still tweaking to see which combinations of context size and parallelism work best for 32GB VRAM and my use cases.
+Using the 27B Q5 model, same power cap:
 
-- Why the combination of models? 35B at Q4 and 27B at Q5?
-I wanted one model with higher quality, and another with higher performance. When using the 35B-A3B model, I expect it to be fast and I'll be interacting with it. When I'll leave the machine working by itself, I use the slower but better 27B Q5 model.
+| Context size | Generation | Prefill |
+|--------------|------------|---------|
+| empty        |    40      |   450   |
+| 25k tokens   |    30      |   300   |
+| 50k tokens   |    25      |   200   |
+| 100k tokens  |   <20      |    70   |
+
+All results are approximated, rounded, etc. since they vary a lot anyway.
+
+All results with the GPU's power cap at 210W, which reduces performance by ~10% but saves 30% of power. And the fans don't spin as hard.
+
+## Q&A
+
+- Which model should I use?  
+  See https://www.youtube.com/watch?v=dSGppyOASVw.
+
+- Why not build from within the docker-compose?  
+  Separates experimentation with the image from experimentation with the models.
+
+- Why the combination of 35B Q4 and 27B Q5?  
+  One model prioritizes speed (35B-A3B) for interactive use, the other prioritizes quality (27B Q5) for unattended workloads.
+
+- Why cap the context at half of what the model supports?  
+  Forces compacting earlier, as inference starts to get quite slugish with a full context. If you *need* the full context, increase to 262144.
+
+- Why parallel = 1 in models.ini?  
+  Avoids slot mismatch, which requires reloading context into another slot — costly with long contexts. Best kept at 1 unless parallel agents are needed.
+
+- Why mtp at 2?  
+  Just copying someone else's homework. If you test with higher values and get good results, please let me know.
+
+- Where can I get more models?  
+  https://huggingface.co/collections/unsloth/unsloth-dynamic-20-quants
+
+- Any tests on quality between models?  
+  Nope. If you do, please let me know.
+
+- The 27B model is multimodal, no?  
+  Yes? But it crashes with: "mtmd_init_from_file: error: mismatch between text model (n_embd = 5120) and mmproj (n_embd = 2048)".
+
+- Why no Turboquant on the 27B model?  
+  Prefill gets *significantly* slower, and we have enough VRAM for q8_0.
+
+- Why turbo4 and not turbo3?  
+  Apparently there's a problem with the 35B-A3B model with turbo3 when context goes above 80k.
