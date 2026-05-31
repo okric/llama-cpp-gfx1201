@@ -9,9 +9,7 @@ RUN apt-get update && apt-get install -y \
     mesa-vulkan-drivers \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --recursive https://github.com/ggml-org/llama.cpp llama-cpp \
-    && cd llama-cpp \
-    && git checkout feature/turboquant-kv-cache
+RUN git clone --recursive https://github.com/ggml-org/llama.cpp llama-cpp
 
 RUN cd llama-cpp \
     && sed -i 's/uint32_t rm_kq = 2/uint32_t rm_kq = 1/' ggml/src/ggml-vulkan/ggml-vulkan.cpp
