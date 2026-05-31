@@ -1,0 +1,45 @@
+# ── Stage 1: build ────────────────────────────────────────────────
+FROM rocm/dev-ubuntu-24.04:7.0 AS builder
+
+ENV AMDGPU_TARGETS="gfx1201"
+
+RUN apt-get update && apt-get install -y \
+    git cmake build-essential \
+    libvulkan-dev glslc spirv-headers \
+    mesa-vulkan-drivers \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN git clone --recursive https://github.com/ggml-org/llama.cpp llama-cpp \
+    && cd llama-cpp \
+    && git checkout feature/turboquant-kv-cache
+
+RUN cd llama-cpp \
+    && sed -i 's/uint32_t rm_kq = 2/uint32_t rm_kq = 1/' ggml/src/ggml-vulkan/ggml-vulkan.cpp
+
+RUN cd llama-cpp \
+    && cmake -B build \
+       -DGGML_VULKAN=ON \
+       -DGGML_NATIVE=ON \
+       -DGPU_TARGETS="gfx1201" \
+       -DCMAKE_BUILD_TYPE=Release \
+    && cmake --build build -j$(nproc)
+
+# ── Stage 2: runtime ──────────────────────────────────────────────
+FROM rocm/dev-ubuntu-24.04:7.0
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    libvulkan1 \
+    mesa-vulkan-drivers \
+    vulkan-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /llama-cpp/build/bin/llama-* /usr/local/bin/
+COPY --from=builder /llama-cpp/build/bin/*.so* /usr/local/lib/
+
+RUN ldconfig && chmod +x /usr/local/bin/llama-*
+
+VOLUME ["/models"]
+EXPOSE 11433
+
+ENTRYPOINT ["llama-server"]
