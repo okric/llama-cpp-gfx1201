@@ -1,5 +1,5 @@
 # ── Stage 1: build ────────────────────────────────────────────────
-FROM rocm/dev-ubuntu-24.04:7.0 AS builder
+FROM rocm/dev-ubuntu-24.04:7.1 AS builder
 
 ENV AMDGPU_TARGETS="gfx1201"
 
@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     mesa-vulkan-drivers \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --recursive https://github.com/ggml-org/llama.cpp llama-cpp
+RUN git clone --depth 1 --recursive https://github.com/ggml-org/llama.cpp llama-cpp
 
 RUN cd llama-cpp \
     && sed -i 's/uint32_t rm_kq = 2/uint32_t rm_kq = 1/' ggml/src/ggml-vulkan/ggml-vulkan.cpp
@@ -23,7 +23,7 @@ RUN cd llama-cpp \
     && cmake --build build -j$(nproc)
 
 # ── Stage 2: runtime ──────────────────────────────────────────────
-FROM rocm/dev-ubuntu-24.04:7.0
+FROM rocm/dev-ubuntu-24.04:7.1
 
 RUN apt-get update && apt-get install -y \
     curl \
