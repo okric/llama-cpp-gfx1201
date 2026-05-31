@@ -1,3 +1,36 @@
+# Llama.cpp Vulkan on gfx1201
+
+Quick-start Docker setup for Llama.cpp with Vulkan on ROCm 7.2, MTP enabled, tuned for Qwen 3.6 on gfx1201.
+
+Targeted at AMD AI PRO R9700.
+
+## Stack
+
+- Qwen 3.6 models: 27B and 35B-A3B with Q4/Q5 quantization
+- Standard llama.cpp with Vulkan enabled
+- Ubuntu 24.04 + ROCm 7.2
+
+## Features
+
+- MTP (multi-token prediction) - faster token generation
+- Vision support for the 35B-A3B model
+
+### Performance Results
+
+See *.bench.md files:
+[Qwen 3.6 27B Q4 benchmark](Qwen3.6-27B-UD-Q5_K_XL.bench.md)
+[Qwen 3.6 35B-A3B Q4 benchmark](Qwen3.6-35B-A3B-UD-Q4_K_XL.bench.md)
+[Qwen 3.6 35B-A3B Q5 benchmark](Qwen3.6-35B-A3B-UD-Q5_K_XL.bench.md)
+
+## Q&A
+
+- Why no Turboquant?
+TheTom's Turboquant fork of llama.cpp does not support Vulkan yet.
+
+___
+
+Obsolete below. Configs still exist in this repo but do not offer the best performance.
+
 # Llama.cpp MTP+TQ on gfx1201
 
 Quick-start Docker setup for Llama.cpp with MTP and Turboquant support, tuned for Qwen 3.6 on gfx1201.
