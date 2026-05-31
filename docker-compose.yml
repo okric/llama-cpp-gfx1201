@@ -23,6 +23,7 @@ services:
             - ./mmproj:/mmproj:ro
         command: >
             --models-dir /models
+            --models-preset /models/models.ini
             --models-autoload
             --models-max 1
             --host 0.0.0.0
