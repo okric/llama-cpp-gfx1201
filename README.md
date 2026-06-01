@@ -22,6 +22,8 @@ See *.bench.md files:
 [Qwen 3.6 35B-A3B Q4 benchmark](Qwen3.6-35B-A3B-UD-Q4_K_XL.bench.md)
 [Qwen 3.6 35B-A3B Q5 benchmark](Qwen3.6-35B-A3B-UD-Q5_K_XL.bench.md)
 
+All results with the GPU's power cap at 210W, which reduces performance by ~10% but saves 30% of power. And the fans don't spin as hard.
+
 ## Q&A
 
 - Why no Turboquant?  
@@ -48,31 +50,6 @@ Targeted at AMD AI PRO R9700 owners with 32GB VRAM who struggle to get past 20 t
 - MTP (multi-token prediction) - faster token generation
 - Turboquant - save VRAM and improve inference speed
 - Vision support for the 35B-A3B model
-
-### Performance Results
-
-Using the 35B-A3B Q4 or Q5 model:
-
-| Context size | Generation | Prefill |
-|--------------|------------|---------|
-| empty        |    80      |  1000   |
-| 25k tokens   |    70      |   640   |
-| 50k tokens   |    60      |   380   |
-| 100k tokens  |    30      |   200   |
-
-
-Using the 27B Q5 model, same power cap:
-
-| Context size | Generation | Prefill |
-|--------------|------------|---------|
-| empty        |    40      |   450   |
-| 25k tokens   |    30      |   300   |
-| 50k tokens   |    25      |   200   |
-| 100k tokens  |   <20      |    70   |
-
-All results are approximated, rounded, etc. since they vary a lot anyway.
-
-All results with the GPU's power cap at 210W, which reduces performance by ~10% but saves 30% of power. And the fans don't spin as hard.
 
 ## Q&A
 
