@@ -21,6 +21,9 @@ services:
         volumes:
             - ./models:/models:ro
             - ./mmproj:/mmproj:ro
+        environment:
+            - GGML_VK_ALLOW_GRAPHICS_QUEUE=1
+            - GGML_VK_DISABLE_COOPMAT=1
         command: >
             --models-dir /models
             --models-preset /models/models.ini
