@@ -24,7 +24,7 @@ See *.bench.md files:
 
 ## Q&A
 
-- Why no Turboquant?
+- Why no Turboquant?  
 TheTom's Turboquant fork of llama.cpp does not support Vulkan yet.
 
 ___

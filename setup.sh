@@ -1,5 +1,4 @@
 #!/bin/bash
-# download.sh
 set -e
 
 mkdir -p ./models
