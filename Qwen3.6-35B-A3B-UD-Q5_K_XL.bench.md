@@ -1,34 +1,34 @@
-| model                          |       size |     params | backend    | ngl | n_ubatch | type_k | type_v | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | -------: | -----: | -----: | -: | --------------: | -------------------: |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |          pp2048 |      2392.57 ± 10.96 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |            tg32 |         71.45 ± 1.73 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |  pp2048 @ d8000 |        969.27 ± 2.15 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |    tg32 @ d8000 |         68.70 ± 1.36 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d16000 |        583.47 ± 1.55 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d16000 |         64.11 ± 0.92 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d24000 |        417.34 ± 0.10 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d24000 |         60.22 ± 0.79 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d32000 |        325.55 ± 0.15 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d32000 |         56.64 ± 0.65 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d40000 |        266.25 ± 0.08 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d40000 |         53.47 ± 0.58 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d48000 |        225.34 ± 0.08 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d48000 |         50.73 ± 0.49 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d56000 |        195.18 ± 0.04 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d56000 |         48.22 ± 0.44 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d64000 |        172.14 ± 0.05 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d64000 |         45.87 ± 0.43 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d72000 |        153.93 ± 0.04 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d72000 |         43.81 ± 0.40 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d80000 |        139.15 ± 0.04 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d80000 |         41.88 ± 0.35 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d88000 |        127.15 ± 0.03 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d88000 |         40.16 ± 0.35 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d96000 |        116.92 ± 0.03 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |   tg32 @ d96000 |         38.51 ± 0.32 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d104000 |        108.24 ± 0.02 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |  tg32 @ d104000 |         37.09 ± 0.28 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 | pp2048 @ d112000 |        100.81 ± 0.02 |
-| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | ROCm       | 999 |     1024 | turbo4 | turbo4 |  1 |  tg32 @ d112000 |         35.71 ± 0.25 |
+| model                          |       size |     params | backend    | ngl | n_ubatch | type_k | type_v |  fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | -------: | -----: | -----: | --: | --------------: | -------------------: |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |          pp2048 |       2970.40 ± 4.39 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |            tg32 |        103.06 ± 0.44 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |  pp2048 @ d8000 |      2271.19 ± 72.14 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |    tg32 @ d8000 |         98.83 ± 5.16 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d16000 |     1849.77 ± 112.25 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d16000 |         97.11 ± 3.53 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d24000 |      1557.44 ± 83.86 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d24000 |         91.56 ± 6.18 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d32000 |      1359.44 ± 38.61 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d32000 |         84.27 ± 6.33 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d40000 |      1176.05 ± 47.04 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d40000 |         74.37 ± 3.17 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d48000 |      1050.04 ± 28.24 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d48000 |         69.30 ± 0.48 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d56000 |       949.59 ± 18.59 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d56000 |         67.42 ± 0.25 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d64000 |       857.70 ± 11.94 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d64000 |         65.95 ± 0.39 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d72000 |        777.29 ± 6.34 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d72000 |         64.49 ± 0.29 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d80000 |        710.22 ± 1.28 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d80000 |         63.14 ± 0.29 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d88000 |        653.73 ± 1.64 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d88000 |         61.72 ± 0.26 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d96000 |        610.01 ± 0.73 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |   tg32 @ d96000 |         60.29 ± 0.32 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d104000 |        572.75 ± 1.12 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |  tg32 @ d104000 |         58.98 ± 0.22 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 | pp2048 @ d112000 |        539.87 ± 0.60 |
+| qwen35moe 35B.A3B Q5_K - Medium |  25.28 GiB |    35.51 B | Vulkan     | 999 |     2048 |   q8_0 |   q8_0 |   1 |  tg32 @ d112000 |         57.74 ± 0.24 |
 
-build: 2cbfdc62a (9418)
+build: 6f165c1 (1)
