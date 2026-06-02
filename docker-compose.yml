@@ -23,7 +23,9 @@ services:
             - ./mmproj:/mmproj:ro
         environment:
             - GGML_VK_ALLOW_GRAPHICS_QUEUE=1
-            - GGML_VK_DISABLE_COOPMAT=1
+        # GGML_VK_ALLOW_GRAPHICS_QUEUE increases tg by 20% and pp by 6%
+        # - GGML_VK_DISABLE_COOPMAT=1
+        # GGML_VK_DISABLE_COOPMAT increases tg by 5% but reduces pp by 45%
         command: >
             --models-dir /models
             --models-preset /models/models.ini
