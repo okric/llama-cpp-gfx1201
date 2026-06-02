@@ -24,7 +24,7 @@ esac
 docker exec llama-cpp llama-bench \
     -m /models/"$MODEL" \
     -p 2048 \
-    -n 32 \
+    -n 128 \
     -ngl 999 \
     -fa 1 \
     -b 4096 \

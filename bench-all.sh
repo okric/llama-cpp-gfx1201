@@ -3,13 +3,14 @@ set -e
 
 MODELS=(
     Qwen3.6-27B-UD-Q5_K_XL.gguf
-    Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf
     Qwen3.6-35B-A3B-UD-Q5_K_XL.gguf
+    Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf
 )
+# Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf is redundant, IMO
 
 for model in "${MODELS[@]}"; do
     base="${model%.gguf}"
-    ./bench.sh "$model" > "$base.bench.md"
+    ./bench.sh "$model" > "$base.bench.md" 2>&1
 done
 
 git add *.bench.md

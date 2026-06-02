@@ -3,10 +3,13 @@ FROM rocm/dev-ubuntu-24.04:7.2.4 AS builder
 
 ENV AMDGPU_TARGETS="gfx1201"
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y software-properties-common \
+    && add-apt-repository -y ppa:kisak/kisak-mesa \
+    && apt-get update \
+    && apt-get install -y \
     git cmake build-essential \
     libvulkan-dev glslc spirv-headers \
-    mesa-vulkan-drivers \
+    mesa-vulkan-drivers=25.2.8-0ubuntu0.24.04.1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN git clone --depth 1 --recursive https://github.com/ggml-org/llama.cpp llama-cpp
@@ -25,12 +28,17 @@ RUN cd llama-cpp \
 # ── Stage 2: runtime ──────────────────────────────────────────────
 FROM rocm/dev-ubuntu-24.04:7.2.4
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y software-properties-common \
+    && add-apt-repository -y ppa:kisak/kisak-mesa \
+    && apt-get update \
+    && apt-get install -y \
     curl \
     libvulkan1 \
-    mesa-vulkan-drivers \
+    mesa-vulkan-drivers=25.2.8-0ubuntu0.24.04.1 \
     vulkan-tools \
     && rm -rf /var/lib/apt/lists/*
+
+# Using kisak-mesa mesa-vulkan-drivers=26.1.1 leads to a severe regression
 
 COPY --from=builder /llama-cpp/build/bin/llama-* /usr/local/bin/
 COPY --from=builder /llama-cpp/build/bin/*.so* /usr/local/lib/

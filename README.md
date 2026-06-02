@@ -8,6 +8,7 @@ Targeted at AMD AI PRO R9700.
 
 - Qwen 3.6 models: 27B and 35B-A3B with Q4/Q5 quantization
 - Standard llama.cpp with Vulkan enabled
+- Kisak Mesa 25.2
 - Ubuntu 24.04 + ROCm 7.2
 
 ## Features
@@ -28,6 +29,9 @@ All results with the GPU's power cap at 210W, which reduces performance by ~10% 
 
 - Why no Turboquant?  
 TheTom's Turboquant fork of llama.cpp does not support Vulkan yet.
+
+- What's with the Q4 model, parallel 4 and 90000 ctx-size?  
+  Parallel agents.
 
 ___
 
@@ -57,13 +61,7 @@ Targeted at AMD AI PRO R9700 owners with 32GB VRAM who struggle to get past 20 t
   See https://www.youtube.com/watch?v=dSGppyOASVw.
 
 - Why not build from within the docker-compose?  
-  Separates experimentation with the image from experimentation with the models.
-
-- Why the combination of 35B Q4 and 27B Q5?  
-  One model prioritizes speed (35B-A3B) for interactive use, the other prioritizes quality (27B Q5) for unattended workloads.
-
-- Why cap the context at half of what the model supports?  
-  Forces compacting earlier, as inference starts to get quite slugish with a full context. If you *need* the full context, increase to 262144.
+  Easier to experiment with several parallel builds.
 
 - Why parallel = 1 in models.ini?  
   Avoids slot mismatch, which requires reloading context into another slot — costly with long contexts. Best kept at 1 unless parallel agents are needed.
